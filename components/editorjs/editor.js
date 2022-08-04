@@ -6,8 +6,9 @@ const ReactEditorJS = createReactEditorJS()
 
 export default function Writer() {
 
+
+
     const [Value, setValue] = useState("")
-    const [OldValue, setOldValue] = useState("")
 
     const editorCore = React.useRef(null)
 
@@ -17,24 +18,17 @@ export default function Writer() {
     
     const handleSave = React.useCallback(async () => {
         const savedData = await editorCore.current.save().then((e) => {
-            setValue(e["blocks"])
-            console.log(e)
+            console.log(e["blocks"])
+            
         })
       
     }, [])
 
-    const renderOldContent = async() => {
-        const savedData = await editorCore.current.save().then((e) => {
-            setValue(e["blocks"])
-            console.log(e)
-        })
-    }
 
     return (
         <div>
-            <ReactEditorJS onInitialize={handleInitialize} defaultValue={Value} tools={EDITOR_JS_TOOLS}/>
-            <button onClick={handleSave}>test</button>
-            <button className="bg-sky-400" onClick={renderOldContent}>button</button>
+            <ReactEditorJS onInitialize={handleInitialize} defaultValue={""} tools={EDITOR_JS_TOOLS}/>
+            <button onClick={handleSave} className="px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md">Save</button>
         </div>
     )
 }
