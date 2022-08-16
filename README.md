@@ -1,1 +1,1 @@
-Nice
+This is SolNews

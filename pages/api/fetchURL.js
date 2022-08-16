@@ -6,21 +6,25 @@ export default function handler(req, res) {
             return String.fromCharCode(num);
         });
     }
-
-    
-    if(req.body["url"]){
-        fetch(req.body["url"]).then(function (response){
-            res.status(200).json({ success: 1, file:{url:req.body["url"]}})
-        })
+    if (req.method === 'GET') {
+        
+        if(req.body["url"]){
+            fetch(req.body["url"]).then(function (response){
+                return res.status(200).json({ success: 1, file:{url:req.body["url"]}})
+            })
+        }
+        else if(req.query["url"]){
+            fetch(req.query["url"]).then(function (response){
+                return response.text()
+            }).then(function (html) {
+                let title = html.match(/<title[^>]*>([^<]+)<\/title>/)[1];
+                title = parseHtmlEnteties(title)
+                return res.status(200).json({ success: 1, meta:{title: title, description: "", image:{url: ""}}})   
+            })
+        }
     }
-    else if(req.query["url"]){
-        fetch(req.query["url"]).then(function (response){
-            return response.text()
-        }).then(function (html) {
-            let title = html.match(/<title[^>]*>([^<]+)<\/title>/)[1];
-            title = parseHtmlEnteties(title)
-            res.status(200).json({ success: 1, meta:{title: title, description: "", image:{url: ""}}})   
-        })
+    else{
+        return res.redirect("/")
     }
 
 }

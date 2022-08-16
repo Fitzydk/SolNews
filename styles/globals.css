@@ -3,10 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  h2 {
-    @apply text-xl;
-    font-weight: bold;
-  }
+  h1 {@apply text-5xl;font-weight: bold;}
+  h2 {@apply text-4xl;font-weight: bold;}
+  h3 {@apply text-3xl;font-weight: bold;}
+  h4 {@apply text-2xl;font-weight: bold;}
+  h5 {@apply text-xl;font-weight: bold;}
+  h6 {font-weight: bold;}
   /* ... */
 }
 
