@@ -12,7 +12,6 @@ if(!MONGODB_URI) {
         
     )
 }
-console.log(MONGODB_URI)
 let cached = global.mongoose
 if(!cached) {
     cached = global.mongoose = {

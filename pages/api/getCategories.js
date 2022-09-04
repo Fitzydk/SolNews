@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 
 export default function Handler(req, res) {
 
-    dbConnect()
+    console.log(dbConnect())
 
     return new Promise(resolve => {
         if (req.method === 'POST') {
